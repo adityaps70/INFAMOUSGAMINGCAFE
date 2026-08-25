@@ -1,0 +1,36 @@
+[
+  {
+    "category": "Gaming Room",
+    "items": [
+      { "name": "PlayStation 5", "halfHour": 200, "fullHour": 400 },
+      { "name": "PlayStation 4", "halfHour": 99, "fullHour": 179 },
+      { "name": "PC Gaming", "halfHour": 99, "fullHour": 179 },
+      { "name": "Table Tennis", "halfHour": 100, "fullHour": 180 }
+    ]
+  },
+  {
+    "category": "Billiards",
+    "items": [
+      { "name": "Snooker", "halfHour": 99, "fullHour": 179 },
+      { "name": "Pool - Red/Blue", "halfHour": 60, "fullHour": 100 },
+      { "name": "Pool - Green", "halfHour": 80, "fullHour": 150 }
+    ]
+  },
+  {
+    "category": "Arcade",
+    "items": [
+      { "name": "Foosball", "halfHour": 49, "fullHour": 89 },
+      { "name": "Steering Wheel", "halfHour": 149, "fullHour": 299 },
+      { "name": "Flight Simulator", "halfHour": 149, "fullHour": 299 }
+    ]
+  },
+  {
+    "category": "Card / Board Games",
+    "items": [
+      { "name": "UNO", "halfHour": 49, "fullHour": 89 },
+      { "name": "Chess", "halfHour": 49, "fullHour": 89 },
+      { "name": "Carrom", "halfHour": 49, "fullHour": 89 }
+    ]
+  }
+]
+
