@@ -53,7 +53,9 @@ describe("inFAMOUS landing page", () => {
   it("covers the verified venue experience without unverified hardware claims", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: /choose your arena/i })).toBeInTheDocument();
+   expect(
+  screen.getByRole("heading", { name: /one venue\. more ways to play\./i }),
+).toBeInTheDocument();
     for (const label of [
       "PC Gaming",
       "PlayStation",
