@@ -54,7 +54,9 @@ describe("inFAMOUS landing page", () => {
     render(<App />);
 
    expect(
-  screen.getByRole("heading", { name: /one venue\. more ways to play\./i }),
+  screen.getByRole("heading", {
+    name: /one venue\. more ways to play\./i,
+  }),
 ).toBeInTheDocument();
     for (const label of [
       "PC Gaming",
