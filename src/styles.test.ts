@@ -28,6 +28,11 @@ describe("responsive and accessible stylesheet contract", () => {
     expect(css).toMatch(/\.mobile-actions[\s\S]*min-height:\s*44px/);
   });
 
+  it("keeps mobile rate categories in one horizontal four-tab row", () => {
+    expect(css).toMatch(/@media\s*\(max-width:\s*760px\)[\s\S]*\.rate-tabs\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s);
+    expect(css).toMatch(/@media\s*\(max-width:\s*760px\)[\s\S]*\.rate-tabs button\s*\{[^}]*min-width:\s*0;/s);
+  });
+
   it("locks the cafe palette and keeps the logo header pure black", () => {
     expect(css).toContain("--lime: #c8ff2e");
     expect(css).toContain("--orange: #ff1717");

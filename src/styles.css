@@ -1950,33 +1950,54 @@ svg {
   }
 
   .rate-tabs {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scroll-snap-type: x proximity;
+    overflow: visible;
+    border-bottom: 1px solid var(--line-strong);
   }
 
   .rate-tabs button {
-    min-width: 148px;
-    min-height: 66px;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
+    display: grid;
+    grid-template-columns: 1fr;
+    min-width: 0;
+    min-height: 64px;
+    gap: 4px;
+    padding: 8px 5px;
+    align-content: center;
+    justify-items: center;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+    text-align: center;
+    font-size: clamp(0.49rem, 2.25vw, 0.62rem);
+    line-height: 1.15;
+    letter-spacing: 0.025em;
+  }
+
+  .rate-tabs button:last-child {
+    border-right: 0;
+  }
+
+  .rate-tabs button span {
+    font-size: 0.72rem;
+    line-height: 1;
   }
 
   .rate-table-wrap {
-    padding: 20px 14px;
+    padding: 18px 14px 14px;
   }
 
   .rate-index {
     top: 10px;
     right: 12px;
-    font-size: 5.4rem;
+    font-size: 4.2rem;
   }
 
   .rate-table caption {
-    margin-bottom: 14px;
-    font-size: 2.4rem;
+    margin-bottom: 12px;
+    padding-right: 56px;
+    font-size: clamp(1.65rem, 8vw, 2.2rem);
+    line-height: 1;
   }
 
   .rate-table thead {
@@ -2000,7 +2021,7 @@ svg {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    padding: 16px 0;
+    padding: 14px 0;
     border-bottom: 1px solid var(--line);
   }
 
