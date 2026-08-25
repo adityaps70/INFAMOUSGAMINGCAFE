@@ -19,7 +19,6 @@ describe("responsive and accessible stylesheet contract", () => {
     expect(css).toContain("env(safe-area-inset-bottom)");
   });
 
-
   it("prevents horizontal page drift and offsets sticky anchor targets", () => {
     expect(css).toContain("overflow-x: clip");
     expect(css).toContain("scroll-margin-top");
@@ -34,11 +33,16 @@ describe("responsive and accessible stylesheet contract", () => {
     expect(css).toContain("--orange: #ff1717");
     expect(css).toMatch(/\.site-header\s*\{[^}]*background:\s*#000/s);
   });
-  it("keeps the venue gallery balanced instead of letting feature photos dominate", () => {
-    expect(css).toMatch(/\.gallery-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
-    expect(css).toMatch(/\.gallery-tile img,[\s\S]*aspect-ratio:\s*3 \/ 2/);
-    expect(css).not.toMatch(/\.gallery-tile-1\s*\{[^}]*grid-row:\s*span\s*2/s);
-    expect(css).not.toMatch(/\.gallery-tile-4\s*\{[^}]*grid-column:\s*1 \/ -1/s);
+
+  it("makes the whole date and time inputs act like native picker targets", () => {
+    expect(css).toMatch(/input\[type="date"\],[\s\S]*input\[type="time"\][\s\S]*cursor:\s*pointer/);
+    expect(css).toMatch(/::-webkit-calendar-picker-indicator[\s\S]*position:\s*absolute[\s\S]*inset:\s*0/);
   });
 
+  it("keeps the venue gallery balanced while showing full photos and scanline styling", () => {
+    expect(css).toMatch(/\.gallery-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
+    expect(css).toMatch(/\.gallery-tile img\s*\{[^}]*height:\s*auto;[^}]*object-fit:\s*contain;/s);
+    expect(css).toContain(".gallery-scanline");
+    expect(css).toContain("animation: scan 5s linear infinite");
+  });
 });

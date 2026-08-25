@@ -15,13 +15,19 @@ export default function Gallery() {
       <div className="gallery-grid">
         {galleryItems.map((item, index) => (
           <figure className={`gallery-tile gallery-tile-${index + 1}`} key={item.title}>
-            <img
-              src={item.imageSrc}
-              alt={item.imageAlt ?? item.title}
-              loading="lazy"
-              width="960"
-              height="720"
-            />
+            <div className="gallery-media">
+              <img
+                src={item.imageSrc}
+                alt={item.imageAlt ?? item.title}
+                loading="lazy"
+                width="960"
+                height="720"
+              />
+              <span className="gallery-scanline" aria-hidden="true" />
+              <span className="gallery-frame-id" aria-hidden="true">
+                inFAMOUS // {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
             <figcaption>
               <strong>{item.title}</strong>
               <span>{item.caption}</span>

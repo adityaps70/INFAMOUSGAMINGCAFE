@@ -119,6 +119,27 @@ describe("inFAMOUS landing page", () => {
     expect(within(screen.getByRole("dialog")).getByLabelText("Game or activity")).toHaveValue("PlayStation 5");
   });
 
+  it("opens date and time pickers when the user clicks anywhere in those fields", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: /book a session/i }));
+    const dialog = screen.getByRole("dialog", { name: /book a gaming session/i });
+    const dateInput = within(dialog).getByLabelText("Booking date");
+    const timeInput = within(dialog).getByLabelText("Preferred time");
+    const datePicker = vi.fn();
+    const timePicker = vi.fn();
+
+    Object.defineProperty(dateInput, "showPicker", { configurable: true, value: datePicker });
+    Object.defineProperty(timeInput, "showPicker", { configurable: true, value: timePicker });
+
+    await user.click(dateInput);
+    await user.click(timeInput);
+
+    expect(datePicker).toHaveBeenCalledTimes(1);
+    expect(timePicker).toHaveBeenCalledTimes(1);
+  });
+
   it("opens the top booking form and sends its details to WhatsApp", async () => {
     const user = userEvent.setup();
     const openWindow = vi.spyOn(window, "open").mockImplementation(() => null);

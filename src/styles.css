@@ -1107,16 +1107,14 @@ svg {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: auto;
   gap: 12px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .gallery-tile {
   position: relative;
   display: flex;
   min-width: 0;
-  min-height: 300px;
   flex-direction: column;
   margin: 0;
   border: 1px solid var(--line);
@@ -1124,81 +1122,55 @@ svg {
   overflow: hidden;
 }
 
-.gallery-tile-1,
-.gallery-tile-2,
-.gallery-tile-3,
-.gallery-tile-4 {
-  grid-column: auto;
-  grid-row: auto;
-}
-
-.gallery-tile img,
-.gallery-placeholder {
-  display: block;
-  width: 100%;
-  min-height: 0;
-  aspect-ratio: 3 / 2;
-  flex: 0 0 auto;
-  object-fit: cover;
-}
-
-.gallery-placeholder {
+.gallery-media {
   position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 240px;
   background:
-    radial-gradient(circle at center, rgba(200, 255, 46, 0.13), transparent 34%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 34px),
+    radial-gradient(circle at center, rgba(200, 255, 46, 0.08), transparent 48%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 34px),
     #0a0c0a;
   overflow: hidden;
 }
 
-.gallery-placeholder::before,
-.gallery-placeholder::after {
+.gallery-media::before {
   content: "";
   position: absolute;
-  width: 55%;
-  aspect-ratio: 1;
-  border: 1px solid rgba(200, 255, 46, 0.2);
-  border-radius: 50%;
+  inset: 0;
+  border: 1px solid rgba(200, 255, 46, 0.18);
+  pointer-events: none;
 }
 
-.gallery-placeholder::after {
-  width: 32%;
-  border-color: rgba(255, 23, 23, 0.24);
+.gallery-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.gallery-placeholder svg {
-  position: relative;
-  z-index: 2;
-  width: clamp(48px, 7vw, 86px);
-  height: clamp(48px, 7vw, 86px);
-  color: var(--lime);
-}
-
-.gallery-placeholder > span:last-child {
+.gallery-frame-id {
   position: absolute;
   z-index: 2;
   right: 16px;
-  bottom: 14px;
-  color: rgba(241, 239, 231, 0.58);
+  bottom: 12px;
+  color: rgba(241, 239, 231, 0.64);
   font-size: 0.62rem;
   font-weight: 900;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.45);
 }
 
 .gallery-scanline {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
-  height: 1px;
-  background: rgba(200, 255, 46, 0.45);
+  height: 2px;
+  background: rgba(200, 255, 46, 0.52);
   box-shadow: 0 0 22px rgba(200, 255, 46, 0.4);
   animation: scan 5s linear infinite;
+  pointer-events: none;
 }
 
 .gallery-tile figcaption {
@@ -1557,6 +1529,23 @@ svg {
 .booking-form textarea {
   min-height: 96px;
   resize: vertical;
+}
+
+.booking-form input[type="date"],
+.booking-form input[type="time"] {
+  position: relative;
+  cursor: pointer;
+}
+
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator,
+.booking-form input[type="time"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .booking-form input:focus,
@@ -2080,20 +2069,10 @@ svg {
 
   .gallery-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: auto;
   }
 
-  .gallery-tile,
-  .gallery-tile-1,
-  .gallery-tile-2,
-  .gallery-tile-3,
-  .gallery-tile-4 {
+  .gallery-tile {
     grid-column: 1;
-    min-height: 280px;
-  }
-
-  .gallery-placeholder {
-    min-height: 220px;
   }
 
   .group-types > div {

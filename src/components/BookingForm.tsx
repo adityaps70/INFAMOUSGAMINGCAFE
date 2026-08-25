@@ -121,6 +121,18 @@ export default function BookingForm({ open, intent = {}, onClose }: BookingFormP
     if (event.target === event.currentTarget) onClose();
   };
 
+  const openNativePicker = (event: MouseEvent<HTMLInputElement>) => {
+    const input = event.currentTarget as HTMLInputElement & { showPicker?: () => void };
+
+    if (typeof input.showPicker !== "function") return;
+
+    try {
+      input.showPicker();
+    } catch {
+      input.focus();
+    }
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!event.currentTarget.checkValidity()) {
@@ -225,6 +237,7 @@ export default function BookingForm({ open, intent = {}, onClose }: BookingFormP
                 min={getLocalDateInputMin()}
                 value={formState.date}
                 onChange={updateField}
+                onClick={openNativePicker}
                 required
               />
             </span>
@@ -237,6 +250,7 @@ export default function BookingForm({ open, intent = {}, onClose }: BookingFormP
               type="time"
               value={formState.time}
               onChange={updateField}
+              onClick={openNativePicker}
               required
             />
           </label>
