@@ -436,6 +436,45 @@ svg {
   filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.38));
 }
 
+.panel-brand {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border: 1px solid rgba(200, 255, 46, 0.16);
+  background: linear-gradient(135deg, rgba(200, 255, 46, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+.panel-brand strong {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.panel-brand small {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.panel-brand-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  color: var(--lime);
+  font-size: 0.66rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(12, 14, 12, 0.9);
+}
+
 .panel-topline,
 .panel-footer {
   position: relative;
@@ -1093,9 +1132,12 @@ svg {
   grid-column: span 5;
 }
 
-.gallery-tile-3,
-.gallery-tile-4 {
+.gallery-tile-3 {
   grid-column: span 5;
+}
+
+.gallery-tile-4 {
+  grid-column: 1 / -1;
 }
 
 .gallery-tile img,
@@ -1845,9 +1887,17 @@ svg {
     padding: 16px;
   }
 
-  .hero-brand-logo {
-    width: min(44vw, 180px);
-    margin-bottom: 18px;
+  .panel-brand {
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .panel-brand strong {
+    font-size: 1.55rem;
+  }
+
+  .panel-brand small {
+    font-size: 0.74rem;
   }
 
   .panel-topline,
@@ -2265,9 +2315,8 @@ svg {
     padding-bottom: 48px;
   }
 
-  .hero-brand-logo {
-    width: 170px;
-    margin-bottom: 18px;
+  .panel-brand strong {
+    font-size: 2rem;
   }
 
   .arena-mode {

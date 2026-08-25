@@ -5,6 +5,7 @@ import {
   MessageCircle,
   MonitorPlay,
   Phone,
+  Sparkles,
   Star,
   Users,
 } from "lucide-react";
@@ -16,7 +17,7 @@ const heroCopy = {
   eyebrow: "Sharda Nagar, Lucknow",
   titleLead: "Play your way.",
   titleAccent: "Own the session.",
-  body: "PC, PlayStation, VR, simulators, cue games, table games, and easy group plans — all from one place.",
+  body: "PC, PlayStation, VR, simulators, billiards, table tennis, and easy group plans — all from one place.",
   primary: "Book on WhatsApp",
   call: "Call now",
   directions: "Get directions",
@@ -114,11 +115,14 @@ export default function Hero({ onBook }: HeroProps) {
       </div>
 
       <div className="arena-panel" aria-label="Ways to start a session at inFAMOUS">
-        <img
-          className="hero-brand-logo"
-          src="./logo.png"
-          alt="inFAMOUS Gaming Cafe original logo"
-        />
+        <div className="panel-brand" aria-label="inFAMOUS Gaming Cafe session selector">
+          <span className="panel-brand-chip">
+            <Sparkles aria-hidden="true" size={14} />
+            inFAMOUS gaming cafe
+          </span>
+          <strong>Session select</strong>
+          <small>Pick a vibe, message the team, and lock in your slot.</small>
+        </div>
         <div className="panel-topline">
           <span>SESSION SELECT</span>
           <span className="panel-status">ENQUIRE → CONFIRM</span>

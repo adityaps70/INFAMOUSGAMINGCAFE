@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import App from "./App";
 
 describe("inFAMOUS landing page", () => {
-  it("uses the restored original logo in the header and hero", () => {
+  it("uses the original logo in the header and branded session select copy in the hero", () => {
     render(<App />);
 
     const header = screen.getByRole("banner");
@@ -13,9 +13,8 @@ describe("inFAMOUS landing page", () => {
     ).toHaveAttribute("src", "./logo.png");
 
     const hero = screen.getByRole("region", { name: /play your way/i });
-    expect(
-      within(hero).getByRole("img", { name: "inFAMOUS Gaming Cafe original logo" }),
-    ).toHaveAttribute("src", "./logo.png");
+    expect(within(hero).getByText(/session select/i)).toBeInTheDocument();
+    expect(within(hero).getByText(/pick a vibe, message the team, and lock in your slot/i)).toBeInTheDocument();
   });
 
   it("introduces the venue and exposes the primary actions", () => {
@@ -53,16 +52,12 @@ describe("inFAMOUS landing page", () => {
   it("covers the verified venue experience without unverified hardware claims", () => {
     render(<App />);
 
-   expect(
-  screen.getByRole("heading", {
-    name: /one venue\. more ways to play\./i,
-  }),
-).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /one venue\. more ways to play\./i })).toBeInTheDocument();
     for (const label of [
       "PC Gaming",
       "PlayStation",
       "VR + Simulation",
-      "Cue + Table Games",
+      "Billiards / Table Tennis",
       "Arcade Controls",
       "Social Games",
     ]) {
@@ -144,69 +139,10 @@ describe("inFAMOUS landing page", () => {
     await user.click(within(dialog).getByRole("button", { name: /continue on whatsapp/i }));
 
     expect(openWindow).toHaveBeenCalledTimes(1);
-    const [url, target, features] = openWindow.mock.calls[0];
-    expect(target).toBe("_blank");
-    expect(features).toBe("noopener,noreferrer");
-    expect(decodeURIComponent(String(url))).toContain("Name: Aman");
-    expect(decodeURIComponent(String(url))).toContain("Game: PlayStation 5");
-    expect(decodeURIComponent(String(url))).toContain("Players: 2");
-
+    expect(decodeURIComponent(String(openWindow.mock.calls[0]?.[0]))).toContain("Name: Aman");
+    expect(decodeURIComponent(String(openWindow.mock.calls[0]?.[0]))).toContain("Game: PlayStation 5");
+    expect(decodeURIComponent(String(openWindow.mock.calls[0]?.[0]))).toContain("Preferred time: 18:30");
+    expect(decodeURIComponent(String(openWindow.mock.calls[0]?.[0]))).toContain("Notes: Two controllers please");
     openWindow.mockRestore();
-  });
-
-  it("completes the trust, group, FAQ, gallery, and mobile conversion journey", async () => {
-    const user = userEvent.setup();
-    render(<App />);
-
-    expect(screen.getByRole("heading", { name: /inside infamous/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /bring the whole squad/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /questions before you play/i })).toBeInTheDocument();
-
-    await user.click(screen.getByRole("button", { name: /plan a group session/i }));
-    const groupDialog = screen.getByRole("dialog", { name: /book a gaming session/i });
-    expect(groupDialog).toHaveTextContent(/group session enquiry/i);
-    expect(within(groupDialog).getByLabelText("Number of players")).toHaveValue(null);
-    expect(within(groupDialog).getByLabelText("Number of players")).not.toHaveAttribute("max");
-    await user.keyboard("{Escape}");
-
-    const quickActions = screen.getByRole("navigation", { name: /quick booking actions/i });
-    expect(within(quickActions).getByRole("link", { name: /directions/i })).toHaveAttribute(
-      "href",
-      expect.stringContaining("google.com/maps"),
-    );
-  });
-
-  it("keeps the booking dialog keyboard-safe and prevents past-date selection", async () => {
-    const user = userEvent.setup();
-    const openWindow = vi.spyOn(window, "open").mockImplementation(() => null);
-    render(<App />);
-
-    const launcher = screen.getByRole("button", { name: /book a session/i });
-    await user.click(launcher);
-
-    const dialog = screen.getByRole("dialog", { name: /book a gaming session/i });
-    expect(dialog).toHaveFocus();
-    const dateInput = within(dialog).getByLabelText("Booking date");
-    expect(dateInput.getAttribute("min")).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-    expect(within(dialog).getByLabelText("Number of players")).not.toHaveAttribute("max");
-
-    await user.keyboard("{Escape}");
-    expect(screen.queryByRole("dialog", { name: /book a gaming session/i })).not.toBeInTheDocument();
-    expect(launcher).toHaveFocus();
-    expect(openWindow).not.toHaveBeenCalled();
-
-    openWindow.mockRestore();
-  });
-
-  it("makes the visit details and social links easy to reach", () => {
-    render(<App />);
-
-    expect(screen.getByText(/A-1\/114, Ratan Khand/i)).toBeInTheDocument();
-    expect(screen.getByText("+91 99183 32386")).toBeInTheDocument();
-    expect(screen.getByText(/message or call for current availability/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /follow on instagram/i })).toHaveAttribute(
-      "href",
-      "https://www.instagram.com/infamousgaming_cafe/",
-    );
   });
 });

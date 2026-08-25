@@ -7,19 +7,31 @@ export type GalleryItem = {
 
 export const galleryItems: readonly GalleryItem[] = [
   {
-    title: "The arena",
-    caption: "Start with the main arena energy: focused sessions, quick drop-ins, and longer crew plans.",
+    title: "VR + PC energy",
+    caption:
+      "A quick look at the immersive and PC side of inFAMOUS — neon lighting, focused stations, and a strong gaming atmosphere.",
+    imageSrc: "./gallery-vr-pc.png",
+    imageAlt: "VR play and PC gaming setup inside inFAMOUS Gaming Cafe",
   },
   {
-    title: "Controller time",
-    caption: "Controller-led sessions for head-to-head rivalry, shared play, and easy group time.",
+    title: "Console lounge",
+    caption:
+      "PlayStation sessions feel easy and social, whether it is a head-to-head match or a relaxed couch session with friends.",
+    imageSrc: "./gallery-console-lounge.png",
+    imageAlt: "Friends playing console games in the PlayStation lounge at inFAMOUS Gaming Cafe",
   },
   {
-    title: "Beyond the screen",
-    caption: "Switch the pace with immersive, steering, and simulator-style experiences.",
+    title: "Billiards + table tennis",
+    caption:
+      "Not every session has to stay on-screen — pool, snooker, and table tennis add a strong off-screen competition vibe.",
+    imageSrc: "./gallery-billiards-tt.png",
+    imageAlt: "Billiards tables and table tennis setup inside inFAMOUS Gaming Cafe",
   },
   {
-    title: "Crew mode",
-    caption: "Bring friends, plan a celebration, or make the gaming session the hangout.",
+    title: "Events & community",
+    caption:
+      "The space also works well for events, gaming communities, and brand-led activations that bring the crowd together.",
+    imageSrc: "./gallery-events.png",
+    imageAlt: "Community event photos inside inFAMOUS Gaming Cafe",
   },
 ] as const;

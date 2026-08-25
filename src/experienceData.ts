@@ -42,12 +42,12 @@ export const experienceItems: readonly ExperienceItem[] = [
     bookingActivity: "VR / Simulation",
   },
   {
-    title: "Cue + Table Games",
+    title: "Billiards / Table Tennis",
     eyebrow: "Off-screen rivalry",
     body: "Break up a gaming session with pool, snooker, or table tennis and keep the competition going.",
     icon: "target",
     tags: ["social", "casual", "competitive"],
-    bookingNotes: "Cue or table-game session enquiry",
+    bookingNotes: "Billiards or table tennis session enquiry",
   },
   {
     title: "Arcade Controls",
