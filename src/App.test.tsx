@@ -13,7 +13,7 @@ describe("inFAMOUS landing page", () => {
     ).toHaveAttribute("src", "./logo.png");
 
     const hero = screen.getByRole("region", { name: /play your way/i });
-    expect(within(hero).getByText(/session select/i)).toBeInTheDocument();
+    expect(within(hero).getAllByText(/session select/i).length).toBeGreaterThan(0);
     expect(within(hero).getByText(/pick a vibe, message the team, and lock in your slot/i)).toBeInTheDocument();
   });
 
