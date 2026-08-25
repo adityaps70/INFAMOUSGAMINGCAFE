@@ -39,10 +39,10 @@ describe("responsive and accessible stylesheet contract", () => {
     expect(css).toMatch(/::-webkit-calendar-picker-indicator[\s\S]*position:\s*absolute[\s\S]*inset:\s*0/);
   });
 
-  it("keeps the venue gallery balanced while showing full photos and scanline styling", () => {
+  it("keeps the venue gallery balanced with full static photos", () => {
     expect(css).toMatch(/\.gallery-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
     expect(css).toMatch(/\.gallery-tile img\s*\{[^}]*height:\s*auto;[^}]*object-fit:\s*contain;/s);
-    expect(css).toContain(".gallery-scanline");
-    expect(css).toContain("animation: scan 5s linear infinite");
+    expect(css).not.toContain(".gallery-scanline");
+    expect(css).not.toContain("animation: scan 5s linear infinite");
   });
 });

@@ -23,7 +23,6 @@ export default function Gallery() {
                 width="960"
                 height="720"
               />
-              <span className="gallery-scanline" aria-hidden="true" />
               <span className="gallery-frame-id" aria-hidden="true">
                 inFAMOUS // {String(index + 1).padStart(2, "0")}
               </span>
