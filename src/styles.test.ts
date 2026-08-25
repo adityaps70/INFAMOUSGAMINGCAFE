@@ -34,4 +34,11 @@ describe("responsive and accessible stylesheet contract", () => {
     expect(css).toContain("--orange: #ff1717");
     expect(css).toMatch(/\.site-header\s*\{[^}]*background:\s*#000/s);
   });
+  it("keeps the venue gallery balanced instead of letting feature photos dominate", () => {
+    expect(css).toMatch(/\.gallery-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
+    expect(css).toMatch(/\.gallery-tile img,[\s\S]*aspect-ratio:\s*3 \/ 2/);
+    expect(css).not.toMatch(/\.gallery-tile-1\s*\{[^}]*grid-row:\s*span\s*2/s);
+    expect(css).not.toMatch(/\.gallery-tile-4\s*\{[^}]*grid-column:\s*1 \/ -1/s);
+  });
+
 });
