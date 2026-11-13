@@ -151,7 +151,9 @@ describe("inFAMOUS landing page", () => {
     const dialog = screen.getByRole("dialog", { name: /book a gaming session/i });
     await user.type(within(dialog).getByLabelText("Your name"), "Aman");
     await user.selectOptions(within(dialog).getByLabelText("Game or activity"), "PlayStation 5");
-    await user.type(within(dialog).getByLabelText("Booking date"), "2026-08-29");
+    const nextWeek = new Date(Date.now() + 7 * 864e5);
+    const bookingDate = `${nextWeek.getFullYear()}-${String(nextWeek.getMonth() + 1).padStart(2, "0")}-${String(nextWeek.getDate()).padStart(2, "0")}`;
+    await user.type(within(dialog).getByLabelText("Booking date"), bookingDate);
     await user.type(within(dialog).getByLabelText("Preferred time"), "18:30");
     await user.selectOptions(within(dialog).getByLabelText("Session duration"), "Full hour");
     await user.clear(within(dialog).getByLabelText("Number of players"));
