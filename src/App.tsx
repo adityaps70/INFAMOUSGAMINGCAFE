@@ -44,6 +44,7 @@ export default function App() {
       <footer className="site-footer">
         <span>inFAMOUS Gaming Cafe</span>
         <span>Sharda Nagar // Lucknow</span>
+        <a href="https://kodehelix.in/" target="_blank" rel="noopener">Website by Kodehelix</a>
       </footer>
       <MobileActions onBook={openBooking} />
       <BookingForm
